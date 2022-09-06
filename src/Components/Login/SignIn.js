@@ -1,6 +1,6 @@
-import { LoginWrapper } from "./style";
+import { FormWrapper } from "../../Shared/styles";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "../Shared/useForm";
+import { useForm } from "../../Shared/useForm";
 
 export default function SignIn() {
     const [form, handleForm] = useForm({
@@ -13,10 +13,11 @@ export default function SignIn() {
     function sendForm(e) {
         e.preventDefault();
         console.log(form);
+        navigate('/extract')
     }
 
     return (
-        <LoginWrapper>
+        <FormWrapper isCentered={true}>
             <h1>MyWallet</h1>
             <form onSubmit={sendForm}>
                 <input
@@ -42,6 +43,6 @@ export default function SignIn() {
                 ></input>
             </form>
             <p onClick={() => navigate('/sign-up')}>Primeira vez? Cadastre-se!</p>
-        </LoginWrapper>
+        </FormWrapper>
     )
 }

@@ -52,6 +52,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
+        color: #FFFFFF;
     }
     input:focus {
         outline: none;
