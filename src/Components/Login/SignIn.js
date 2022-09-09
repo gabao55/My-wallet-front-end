@@ -1,8 +1,9 @@
 import { FormWrapper } from "../../Shared/styles";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../Shared/useForm";
+import { login } from "../../Services/mywallet";
 
-export default function SignIn() {
+export default function SignIn({ setToken }) {
     const [form, handleForm] = useForm({
         initState: {
             email: "",
@@ -12,8 +13,15 @@ export default function SignIn() {
     const navigate = useNavigate();
     function sendForm(e) {
         e.preventDefault();
-        console.log(form);
-        navigate('/extract')
+        
+        const promise = login(form);
+
+        promise
+        .then(res => {
+            setToken(res.data);
+            navigate('/extract')
+        })
+        .catch(error => console.log(error));
     }
 
     return (
