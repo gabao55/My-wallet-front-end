@@ -21,7 +21,7 @@ export default function SignIn({ setUserData }) {
             setUserData(res.data);
             navigate('/extract')
         })
-        .catch(error => console.log(error));
+        .catch(error => alert('Email e/ou senha inválido(s)'));
     }
 
     return (

@@ -24,7 +24,7 @@ export default function SignUp() {
             const errorStatus = error.response.status;
             switch (errorStatus) {
                 case 422:
-                    const errorsArray = error.response.data
+                    const errorsArray = error.response.data;
                     if (errorsArray.includes("\"passwordConfirmation\" must be [ref:password]")) {
                         const index = errorsArray.indexOf("\"passwordConfirmation\" must be [ref:password]");
                         errorsArray[index] = "both passwords must be equal";

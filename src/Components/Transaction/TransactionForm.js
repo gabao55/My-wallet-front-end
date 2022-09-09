@@ -33,7 +33,20 @@ export default function TransactionForm({ userData }) {
 
         promise
         .then(() => navigate('/extract'))
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            const errorStatus = error.response.status;
+            switch (errorStatus) {
+                case 401:
+                    alert('Erro de validação, tente novamente ou refaça o login');
+                    break;
+                case 422:
+                    alert(error.response.data.join('\n'));
+                    break;
+                default:
+                    alert('Ocorreu um erro inesperado, tente novamente');
+                    break;
+            }
+        });
     }
 
     return (
