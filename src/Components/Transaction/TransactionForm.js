@@ -1,10 +1,16 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { createTransaction } from "../../Services/mywallet";
 import { FormWrapper } from "../../Shared/styles";
 import { useForm } from "../../Shared/useForm";
 
-export default function TransactionForm({ token }) {
+export default function TransactionForm({ userData }) {
     const {state} = useLocation();
-    const transactionType = state === "income" ? "entrada" : "saída";
+    const transactionWord = state === "income" ? "entrada" : "saída";
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${userData.token}`
+        }
+    };
     const [form, handleForm] = useForm({
         initState: {
             type: state,
@@ -13,14 +19,26 @@ export default function TransactionForm({ token }) {
         }
     });
 
+    const navigate = useNavigate();
+
     function sendForm(e) {
         e.preventDefault();
-        console.log(form);
+        const promise = createTransaction(
+            {
+                ...form,
+                date: new Date(),
+            },
+            config
+        );
+
+        promise
+        .then(() => navigate('/extract'))
+        .catch((error) => console.log(error));
     }
 
     return (
         <FormWrapper isCentered={false}>
-            <h2>Nova {transactionType}</h2>
+            <h2>Nova {transactionWord}</h2>
             <form onSubmit={sendForm}>
                 <input
                     type="text"
@@ -40,8 +58,7 @@ export default function TransactionForm({ token }) {
                 ></input>
                 <input 
                     type="submit"
-                    value={"Salvar " + transactionType} 
-                    required
+                    value={"Salvar " + transactionWord}
                 ></input>
             </form>
         </FormWrapper>
