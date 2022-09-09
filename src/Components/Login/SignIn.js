@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "../../Shared/useForm";
 import { login } from "../../Services/mywallet";
 
-export default function SignIn({ setToken }) {
+export default function SignIn({ setUserData }) {
     const [form, handleForm] = useForm({
         initState: {
             email: "",
@@ -18,7 +18,7 @@ export default function SignIn({ setToken }) {
 
         promise
         .then(res => {
-            setToken(res.data);
+            setUserData(res.data);
             navigate('/extract')
         })
         .catch(error => console.log(error));
