@@ -39,6 +39,20 @@ const ExtractContainer = styled.div`
         display: none;
     }
 
+    .transactions .empty {
+        width: 180px;
+        height: 446px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .transactions .empty p {
+        font-size: 20px;
+        color: #868686;
+        text-align: center;
+    }
+
     .balance {
         width: calc(100% - 24px);
         position: absolute;
@@ -53,7 +67,7 @@ const ExtractContainer = styled.div`
     }
 
     .balance strong {
-        color: ${props => props.isNegative ? "#03AC00" : "#C70000"};
+        color: ${props => props.isPositive ? "#03AC00" : "#C70000"};
     }
 `;
 
@@ -70,12 +84,12 @@ const Transaction = styled.div`
     }
     
     p {
-        margin-left: 5px;
+        margin: 0 8px;
         color: #000000;
     }
 
     strong {
-        color: ${props => props.isPositive ? "#03AC00" : "#C70000"};
+        color: ${props => props.transactionType === "income" ? "#03AC00" : "#C70000"};
     }
 `;
 
