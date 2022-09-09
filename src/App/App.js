@@ -8,8 +8,7 @@ import TransactionForm from "../Components/Transaction/TransactionForm";
 import { useState } from "react";
 
 export default function App() {
-  const [token, setToken] = useState('');
-  console.log(token);
+  const [userData, setUserData] = useState({});
 
   return (
     <>
@@ -17,10 +16,10 @@ export default function App() {
       <AppWrapper>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SignIn setToken={setToken} />} />
+            <Route path="/" element={<SignIn setUserData={setUserData} />} />
             <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/extract" element={<Extract token={token} />} />
-            <Route path="/add-transaction" element={<TransactionForm token={token} />} />
+            <Route path="/extract" element={<Extract userData={userData} />} />
+            <Route path="/add-transaction" element={<TransactionForm userData={userData} />} />
           </Routes>
         </BrowserRouter>
       </AppWrapper>
