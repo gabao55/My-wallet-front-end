@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ExtractWrapper, ExtractContainer, Transaction, CreateTransaction } from "./style";
 
-export default function Extract() {
+export default function Extract({ token }) {
     const navigate = useNavigate();
 
     return (
@@ -9,7 +9,7 @@ export default function Extract() {
             <ExtractWrapper isPositive={true}>
                 <div>
                     <h2>Olá, Fulano</h2>
-                    <ion-icon name="exit-outline"></ion-icon>
+                    <ion-icon name="exit-outline" onClick={() => navigate('/')}></ion-icon>
                 </div>
                 <ExtractContainer isPositive={true}>
                     <div className="transactions">

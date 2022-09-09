@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom";
 import { FormWrapper } from "../../Shared/styles";
 import { useForm } from "../../Shared/useForm";
 
-export default function TransactionForm() {
+export default function TransactionForm({ token }) {
     const {state} = useLocation();
     const transactionType = state === "income" ? "entrada" : "saída";
     const [form, handleForm] = useForm({
