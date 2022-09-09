@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../Services/mywallet";
 import { FormWrapper } from "../../Shared/styles";
 import { useForm } from "../../Shared/useForm";
 
@@ -15,8 +16,32 @@ export default function SignUp() {
 
     function sendForm(e) {
         e.preventDefault();
-        console.log(form);
-        navigate('/');
+        const promise = registerUser(form);
+        
+        promise
+        .then(() => navigate('/'))
+        .catch(error => {
+            const errorStatus = error.response.status;
+            switch (errorStatus) {
+                case 422:
+                    const errorsArray = error.response.data
+                    if (errorsArray.includes("\"passwordConfirmation\" must be [ref:password]")) {
+                        const index = errorsArray.indexOf("\"passwordConfirmation\" must be [ref:password]");
+                        errorsArray[index] = "both passwords must be equal";
+                    }
+        
+                    alert(errorsArray.join('\n'));
+                    break;
+
+                case 409:
+                    alert('E-mail já cadastrado, tente outro email.');
+                    break;
+
+                default:
+                    alert('Ocorreu um erro inesperado, tente novamente');
+                    break;
+            }
+        });
     }
 
     return (
