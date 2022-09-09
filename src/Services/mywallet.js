@@ -6,8 +6,8 @@ function registerUser(body) {
     return axios.post(`${apiPath}/auth/sign-up`, body)
 }
 
-function login(body, config) {
-    return axios.post(`${apiPath}/auth/sign-in`, body, config);
+function login(body) {
+    return axios.post(`${apiPath}/auth/sign-in`, body);
 }
 
 function createTransaction(body, config) {
