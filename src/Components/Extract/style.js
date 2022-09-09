@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const ExtractWrapper = styled.div`
     width: 100%;
+    max-width: 600px;
     position: relative;
 
     div {
@@ -69,14 +70,28 @@ const ExtractContainer = styled.div`
     .balance strong {
         color: ${props => props.isPositive ? "#03AC00" : "#C70000"};
     }
+
+    @media (max-height: 850px) {
+        height: 300px;
+    }
 `;
 
 const Transaction = styled.div`
     margin-bottom: 16px;
     font-size: 16px;
+    justify-content: space-between;
 
-    div {
+    div:first-child {
         justify-content: flex-start;
+    }
+
+    div:nth-child(2) {
+        width: auto;
+        justify-content: flex-end;
+    }
+
+    div:nth-child(2) span {
+        cursor: pointer;
     }
 
     span {
@@ -86,15 +101,18 @@ const Transaction = styled.div`
     p {
         margin: 0 8px;
         color: #000000;
+        cursor: pointer;
     }
 
     strong {
+        margin-right: 12px;
         color: ${props => props.transactionType === "income" ? "#03AC00" : "#C70000"};
     }
 `;
 
 const CreateTransaction = styled.div`
     width: 100%;
+    max-width: 600px;
     display: flex;
     justify-content: space-between;
     margin-top: 13px;
