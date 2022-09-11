@@ -18,4 +18,8 @@ function getUserTransactions(config) {
     return axios.get(`${apiPath}/transactions`, config);
 }
 
-export { registerUser, login, createTransaction, getUserTransactions };
+function deleteTransaction(config) {
+    return axios.delete(`${apiPath}/transactions`, config);
+}
+
+export { registerUser, login, createTransaction, getUserTransactions, deleteTransaction };
