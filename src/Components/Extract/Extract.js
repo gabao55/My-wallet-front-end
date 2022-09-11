@@ -93,7 +93,10 @@ function TransactionLine({ transactionData }) {
                 <span>{formatedDate}</span>
                 <p>{transactionData.description}</p>
             </div>
-            <strong>{formatedValue}</strong>
+            <div>
+                <strong>{formatedValue}</strong>
+                <span>X</span>
+            </div>
         </Transaction>
     )
 }
