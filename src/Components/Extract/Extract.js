@@ -88,6 +88,8 @@ function Transactions({ transactions, config, setLastDeleted }) {
 function TransactionLine({ transactionData, config, setLastDeleted }) {
     const formatedValue = Number(transactionData.value).toFixed(2).replace('.', ',');
     const formatedDate =  dayjs(transactionData.date).format('DD/MM');
+
+    const navigate = useNavigate();
     
     function deleteItem() {
         config.headers._id = transactionData._id;
@@ -118,7 +120,7 @@ function TransactionLine({ transactionData, config, setLastDeleted }) {
         <Transaction transactionType={transactionData.type}>
             <div>
                 <span>{formatedDate}</span>
-                <p>{transactionData.description}</p>
+                <p onClick={() => navigate('/edit-transaction', { state: transactionData })}>{transactionData.description}</p>
             </div>
             <div>
                 <strong>{formatedValue}</strong>

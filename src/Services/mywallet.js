@@ -22,4 +22,8 @@ function deleteTransaction(config) {
     return axios.delete(`${apiPath}/transactions`, config);
 }
 
-export { registerUser, login, createTransaction, getUserTransactions, deleteTransaction };
+function updateTransaction(body, config) {
+    return axios.put(`${apiPath}/transactions`, body, config);
+}
+
+export { registerUser, login, createTransaction, getUserTransactions, deleteTransaction, updateTransaction };

@@ -7,6 +7,7 @@ import SignUp from "../Components/Login/SignUp";
 import Extract from "../Components/Extract/Extract";
 import TransactionForm from "../Components/Transaction/TransactionForm";
 import { useState } from "react";
+import TransactionEdition from "../Components/Transaction/TransactionEdition";
 
 export default function App() {
   const [userData, setUserData] = useState({});
@@ -21,6 +22,7 @@ export default function App() {
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/extract" element={<Extract userData={userData} />} />
             <Route path="/add-transaction" element={<TransactionForm userData={userData} />} />
+            <Route path="/edit-transaction" element={<TransactionEdition userData={userData} />} />
           </Routes>
         </BrowserRouter>
       </AppWrapper>
